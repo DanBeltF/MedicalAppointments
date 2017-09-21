@@ -13,6 +13,27 @@ import static org.junit.Assert.*;
  *
  * @author hcadavid
  */
+
+
+/**
+ * Diseño de pruebas:
+ * 
+ * Clases de equivalencia:
+ *  
+ *      CE1: Descripción (matemática o en lenguaje natural).
+ *           Resultado esperado: Si es numérico, NO DEBE SER ESPECÍFICO.
+ *          
+ *      CE2: Descripción (matemática o en lenguaje natural).
+ *           Resultado esperado: Si es numérico, NO DEBE SER ESPECÍFICO.
+ * 
+ *  
+ * Condiciones de frontera:
+ * 
+ *      CF1: Descripción.
+ *           Clases de equivalencia relacionadas:
+ *           Resultado esperado: Si es numérico, NO DEBE SER ESPECÍFICO.
+ * 
+ */
 public class ServiciosPacientesTest {
     
     public ServiciosPacientesTest() {

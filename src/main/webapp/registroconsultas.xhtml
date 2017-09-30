@@ -1,10 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head></h:head>
+    <h:head>Consultas</h:head>
 
     <h:body>
+        <h:form id="con">
+            <p:dataTable id="datatable2" var="con" value="#{HistorialPacientes.consultas}">
+                
+                <p:column headerText="Id">
+                    <h:outputText value="#{con.id}" />
+                </p:column>
+                
+                <p:column headerText="Fecha de Nacimiento">
+                    <h:outputText value="#{con.fechayHora}" />
+                </p:column>
+                
+                <p:column headerText="Resumen">
+                    <h:outputText value="#{con.resumen}" />
+                </p:column>
+                
+                <p:column headerText="Costo">
+                    <h:outputText value="#{con.costo}" />
+                </p:column>
+                
+            </p:dataTable>
+            
+            <center>
+                <p:panel header="Registro Consulta">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Fecha"/>  
+                        <p:calendar value="#{HistorialPacientes.consultaAgrega.fechayHora}"/>
+                        <p:outputLabel value="Costo"/>
+                        <p:inputText value="#{HistorialPacientes.consultaAgrega.costo}"/>
+                        <p:outputLabel value="Resumen"/>
+                        <p:inputText value="#{HistorialPacientes.consultaAgrega.resumen}"/>
+                        <p:commandButton update="con" value="Agregar" icon ="ui-icon-circle-plus" actionListener="#{HistorialPacientes.agregarConsulta()}"/>
+                        <p:commandButton  value="Regresar"  icon="ui-icon-circle-arrow-w" action="registropacientes"/>
+                    </h:panelGrid>
+                </p:panel>
+            </center>
+        </h:form>
     </h:body>
 
 </html>

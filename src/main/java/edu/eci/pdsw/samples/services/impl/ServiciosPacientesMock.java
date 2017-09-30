@@ -21,6 +21,7 @@ import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +37,7 @@ import java.util.logging.Logger;
  *
  * @author hcadavid
  */
-public class ServiciosPacientesMock implements ServiciosPacientes {
+public class ServiciosPacientesMock implements ServiciosPacientes, Serializable {
 
     private final Map<Tupla<Integer, String>, Paciente> pacientes;
     private final List<Eps> epsregistradas;
@@ -45,7 +46,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     public ServiciosPacientesMock() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas = new LinkedList<>();
-        //cargarDatosEstaticos(pacientes);
+        cargarDatosEstaticos(pacientes);
     }
 
     @Override
@@ -61,14 +62,15 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
 
     @Override
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {
-        
-        pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-        System.out.println("reg:"+new Tupla<>(paciente.getId(), paciente.getTipoId()));
+        if (epsregistradas.indexOf(paciente.getEps()) > 0) {
+            pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
+        } else {
+            throw new ExcepcionServiciosPacientes("Eps " + paciente.getEps().getNombre() + " no esta registrada");
+        }
     }
 
     @Override
     public void agregarConsultaPaciente(int idPaciente, String tipoid, Consulta consulta) throws ExcepcionServiciosPacientes {
-        System.out.println("add:"+new Tupla<>(idPaciente, tipoid));
         Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
         if (paciente != null) {
             consulta.setId(idconsulta);

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>Pacientes</h:head>
+    <h:body>
+        <h:form id="form">
+            <p:dataTable id="datatable1" var="p" value="#{HistorialPacientes.pacientes}">
+                
+                <p:column headerText="Documento">
+                    <h:outputText value="#{p.tipoId}" />
+                </p:column>
+                
+                <p:column headerText="Id">
+                    <h:outputText value="#{p.id}" />
+                </p:column>
+                
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{p.nombre}" />
+                </p:column>
+                
+                <p:column headerText="Fecha de Nacimiento">
+                    <h:outputText value="#{p.fechaNacimiento}" />
+                </p:column>
+                
+                <p:column headerText="EPS">
+                    <h:outputText value="#{p.eps.nombre}" />
+                </p:column>
+                
+                <p:column headerText="Cant. Consultas">
+                    <h:outputText value="#{p.consultas.size()}" />
+                </p:column>
+                
+                <p:column headerText="Agregar Consulta">
+                    <p:commandButton value="Registrar Consulta" icon="ui-icon-circle-triangle-e" action="registroconsultas">
+                        <f:actionListener binding="#{HistorialPacientes.setPacienteSeleccionado(p)}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <center>
+                <p:panel header="Registro Paciente">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Tipo de Documento"/>
+                        <p:inputText value="#{HistorialPacientes.pacienteAgrega.tipoId}"/>
+                        <p:outputLabel value="Id"/>
+                        <p:inputText value="#{HistorialPacientes.pacienteAgrega.id}"/>
+                        <p:outputLabel value="Nombre"/>
+                        <p:inputText value="#{HistorialPacientes.pacienteAgrega.nombre}"/>
+                        <p:outputLabel value="Fecha de Nacimiento"/>
+                        <p:calendar value="#{HistorialPacientes.pacienteAgrega.fechaNacimiento}" showOtherMonths="True"  pattern="dd/MM/yyyy"/>
+                        <p:outputLabel value="EPS"/>
+                        <p:selectOneMenu value="#{HistorialPacientes.pacienteAgrega.epss}" var="epsmap">
+                            <f:selectItems value="#{HistorialPacientes.epss}" var="epss" itemLabel="#{epss.nombre}" itemValue="#{epss}"/>
+                            <p:column>
+                                #{epsmap.nombre}
+                            </p:column>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:commandButton icon="ui-icon-circle-arrow-e" value="Adicionar Paciente" resetValues="True" update="form" actionListener="#{HistorialPacientes.agregarPaciente()}"/>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

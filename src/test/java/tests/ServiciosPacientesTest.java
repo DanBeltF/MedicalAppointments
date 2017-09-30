@@ -8,6 +8,9 @@ package tests;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import edu.eci.pdsw.samples.entities.*;
+import edu.eci.pdsw.samples.services.impl.*;
+import edu.eci.pdsw.samples.services.*;
 
 /**
  *
@@ -23,26 +26,27 @@ public class ServiciosPacientesTest {
     }
 
     /**
-     * Diseño de pruebas:
-     *Clases de equivalencia:
+     * Diseño de pruebas
+     * Clases de equivalencia
      *
-     * CE1: Descripción: 
-     * Resultado esperado:
+     * CE1: Descripción: El paciente existe
+     * Resultado esperado: Agrega el paciente
      *
-     * CE2: Descripción:
-     * Resultado esperado:
+     * CE2: Descripción: El paciente no existe
+     * Resultado esperado: ERROR
      *
-     *
-     * Condiciones de frontera:
-     *
-     * CF1: Descripción: 
-     * Clases de equivalencia relacionadas:
-     * Resultado esperado: 
+     * CE3: Descripción: La eps existe
+     * Resultado esperado: Agrega
+     * 
+     * CE4: Descripción: La eps no existe
+     * Resultado esperado: ERROR
      *
      */
+    
+    ServiciosPacientes test;
     @Test
-    public void registroConsultasPacientesTest() {
-        Sevicios
+    public void registroConsultasPacientesTest() throws ExcepcionServiciosPacientes{
+        
        
     }
 

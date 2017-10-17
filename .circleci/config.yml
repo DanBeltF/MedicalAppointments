@@ -1,7 +1,0 @@
-version: 2
-jobs:
-  build:
-  staging:
-     branch: master
-     heroku:
-       appname: medicalappointments

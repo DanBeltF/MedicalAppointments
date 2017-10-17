@@ -24,11 +24,3 @@ CREATE TABLE `CM_CONSULTAS` (
   PRIMARY KEY (`idCONSULTAS`)
   )
   
-  insert into `CM_EPS` values('Compensar',8456981);
-  insert into `CM_EPS` values('Sanitas',8456982);
-  insert into `CM_EPS` values('Sura',8456983);
-  insert into `CM_EPS` values('Coomeva',8456984);
-  insert into `CM_EPS` values('Medimas',8456985);
-  insert into `CM_EPS` values('SaludTotal',8456986);
-  insert into `CM_PACIENTES` values (12313,'CC','Albert Einstein','2017-03-02',8456981);
-  insert into `CM_PACIENTES` values (1231233333,'CC','Albert Einstein 2','1887-03-02',8456984);

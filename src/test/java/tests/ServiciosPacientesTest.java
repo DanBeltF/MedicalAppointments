@@ -19,14 +19,6 @@ import static org.junit.Assert.*;
  *
  * @author hcadavid
  */
-public class ServiciosPacientesTest {
-
-    public ServiciosPacientesTest() {
-    }
-
-    @Before
-    public void setUp() {
-    }
 
     /**
      * Diseño de pruebas Clases de equivalencia
@@ -43,27 +35,35 @@ public class ServiciosPacientesTest {
      * CE4: Descripción: La EPS no existe
      * Resultado esperado: ERROR
      */
+public class ServiciosPacientesTest {
+
+    ServiciosPacientes test = ServiciosHistorialPacientesFactory.getInstance().getTestingServiciosPaciente();
+    
+    public ServiciosPacientesTest() {
+    }
+
+    @Before
+    public void setUp() {
+    }
+    
     @Test
     public void registroConsultasPacientesTestCE1() throws ExcepcionServiciosPacientes {
+        Consulta con = new Consulta(java.sql.Date.valueOf("2020-01-01"), "Dolor de cabeza", 745334);
         try {
-            ServiciosPacientes test = new ServiciosPacientesMock();
-            Consulta con = new Consulta(java.sql.Date.valueOf("1956-05-01"), "Vomito", 1000);
-            test.agregarConsultaPaciente(6, "CC", con);
-            assertEquals("Si se agrega", 2, test.consultarPaciente(6, "CC").getConsultas().size());
-        } catch (ExcepcionServiciosPacientes ex) {
-            ex.getMessage();}   
+            test.agregarConsultaPaciente(0, "CC", con);
+            fail("esta agregando a un paciente inexistente");
+        } catch (Exception e) {
+            Logger.getLogger(ServiciosPacientesTest.class.getName()).log(Level.SEVERE, null, e);}   
     }
+    
     
     @Test
     public void registroPacientesTestCE3() throws ExcepcionServiciosPacientes{
         try{
-            ServiciosPacientes test = new ServiciosPacientesMock();
             Paciente paci = new Paciente(8, "CC", "Estiven Martinez", new Date(2010, 2, 1), new Eps("Sura", "798273892-0"));
             test.registrarNuevoPaciente(paci);
             assertEquals("Si se agrega el paciente", "Estiven Martinez", test.consultarPaciente(8, "CC").getNombre());
         } catch (ExcepcionServiciosPacientes ex) {
-            ex.getMessage();
+            Logger.getLogger(ServiciosPacientesTest.class.getName()).log(Level.SEVERE, null, ex);}
         }
-    }
 }
-

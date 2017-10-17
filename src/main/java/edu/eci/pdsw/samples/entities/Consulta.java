@@ -17,6 +17,7 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 
@@ -83,5 +84,33 @@ public class Consulta {
         return "("+id+","+fechayHora+","+resumen+")"; //To change body of generated methods, choose Tools | Templates.
     }
     
+     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.resumen);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Consulta other = (Consulta) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.resumen, other.resumen)) {
+            return false;
+        }
+        return true;
+    }
     
 }

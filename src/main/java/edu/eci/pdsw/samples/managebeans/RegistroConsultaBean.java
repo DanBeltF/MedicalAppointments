@@ -50,9 +50,6 @@ public class RegistroConsultaBean implements Serializable {
         eps.put("SaludTotal", new Eps("SaludTotal","8456986")); 
     }
     
-        
-   
-
     public RegistroConsultaBean() {
         paciente = new Paciente();
         consulta = new Consulta();
@@ -105,16 +102,13 @@ public class RegistroConsultaBean implements Serializable {
 
 
     public void agregarConsulta() throws ExcepcionServiciosPacientes {
-        servicepacientes.agregarConsultaPaciente(pacienteSelec.getId(), pacienteSelec.getTipoId(), consulta);
+        servicepacientes.agregarConsultaPaciente(pacienteSelec.getId(),
+        pacienteSelec.getTipoId(), consulta);
         consulta = new Consulta();
         pacienteSelec=servicepacientes.consultarPaciente(pacienteSelec.getId(), pacienteSelec.getTipoId());
 
     }
-    
-    public void nuevoPaciente(){
-        pacienteSelec = null;
-    }
-    
+
     public ServiciosPacientes getServicepacientes() {
         return servicepacientes;
     }

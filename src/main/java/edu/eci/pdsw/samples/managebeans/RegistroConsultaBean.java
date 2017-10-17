@@ -38,17 +38,20 @@ public class RegistroConsultaBean implements Serializable {
     private Consulta consulta;
     private Paciente paciente;
     private String epss;
-    private static Map<String, Object> epsMap;
+    private static Map<String, Object> eps;
 
-    static {
-        epsMap = new LinkedHashMap<String, Object>();
-        epsMap.put("Compensar", "Compensar");
-        epsMap.put("Sanitas", "Sanitas");
-        epsMap.put("Sura", "Sura");
-        epsMap.put("Coomeva", "Coomeva");
-        epsMap.put("Medimas", "Medimas");
-        epsMap.put("SaludTotal", "SaludTotal");
+    public void init(){
+        eps = new LinkedHashMap<String, Object>();
+        eps.put("Compensar", new Eps("Compensar", "8456981"));
+        eps.put("Sanitas", new Eps("Sanitas","8456982"));
+        eps.put("Sura", new Eps("Sura", "8456983"));
+        eps.put("Coomeva", new Eps("Coomeva", "8456984"));
+        eps.put("Medimas", new Eps("Medimas","8456985"));
+        eps.put("SaludTotal", new Eps("SaludTotal","8456986")); 
     }
+    
+        
+   
 
     public RegistroConsultaBean() {
         paciente = new Paciente();
@@ -99,19 +102,27 @@ public class RegistroConsultaBean implements Serializable {
         return servicepacientes.obtenerEPSsRegistradas();
     }
 
-    public static Map<String, Object> getEpsMap() {
-        return epsMap;
-    }
 
-    public static void setEpsMap(Map<String, Object> epsMap) {
-        RegistroConsultaBean.epsMap = epsMap;
-    }
 
     public void agregarConsulta() throws ExcepcionServiciosPacientes {
         servicepacientes.agregarConsultaPaciente(pacienteSelec.getId(), pacienteSelec.getTipoId(), consulta);
         consulta = new Consulta();
+        pacienteSelec=servicepacientes.consultarPaciente(pacienteSelec.getId(), pacienteSelec.getTipoId());
+
+    }
+    
+    public void nuevoPaciente(){
+        pacienteSelec = null;
+    }
+    
+    public ServiciosPacientes getServicepacientes() {
+        return servicepacientes;
     }
 
+    public String action(){
+        return "registropacientes.xhtml";
+    }  
+    
     public void agregarPaciente() throws ExcepcionServiciosPacientes {
         servicepacientes.registrarNuevoPaciente(paciente);
         paciente = new Paciente();

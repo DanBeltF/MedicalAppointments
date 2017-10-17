@@ -62,10 +62,10 @@ public class ServiciosPacientesMock implements ServiciosPacientes, Serializable 
 
     @Override
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {
-        if (epsregistradas.indexOf(paciente.getEps()) > 0) {
+        if(paciente != null){
             pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-        } else {
-            throw new ExcepcionServiciosPacientes("Eps " + paciente.getEps().getNombre() + " no esta registrada");
+        }else{
+            throw new ExcepcionServiciosPacientes("El paciente no tiene ningun dato para ser registrado");
         }
     }
 
